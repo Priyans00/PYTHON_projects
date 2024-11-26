@@ -50,6 +50,8 @@ def comp(n):
     else:
         l=n[-1]+1
     
+    #applying the winning strategy
+
     remainder = l%4
     if remainder == 1:
         k=3
@@ -60,15 +62,13 @@ def comp(n):
             k=1
         else:
             k=1
-
-
-
     for i in range(l,l+k):
         n.append(i)
     if 21 in n:
         loose('comp')
-    print("order of input after comp's turn is :")
-    print(n)
+    else:
+        print("order of input after comp's turn is :")
+        print(n)
 
 def loose(s):
     print(f"{s} lost")
