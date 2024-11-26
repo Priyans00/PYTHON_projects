@@ -45,11 +45,24 @@ def human(n):
         print(n)
 
 def comp(n):
-    if n == []:
-        l = 1
+    if n==[]:
+        l=1
     else:
-        l = n[-1]+1
-    k=random.randint(1,3)
+        l=n[-1]+1
+    
+    remainder = l%4
+    if remainder == 1:
+        k=3
+    else:
+        if remainder == 2:
+            k=2
+        elif remainder == 3:
+            k=1
+        else:
+            k=1
+
+
+
     for i in range(l,l+k):
         n.append(i)
     if 21 in n:
