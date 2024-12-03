@@ -14,7 +14,7 @@ def input_task():
     e1=tk.Entry(root).grid(row=0,column=1)
     tk.Label(root,text="input  the deadline").grid(row=1)
     e2=tk.Entry(root).grid(row=1,column=1)
-    button = tk.Button(root,text="confirm",command=)
+    button = tk.Button(root,text="confirm",command= write1(e1,e2))
         
 
 def see_task():
