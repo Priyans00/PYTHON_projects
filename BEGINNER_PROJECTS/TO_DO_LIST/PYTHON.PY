@@ -18,6 +18,8 @@ def input_task():
     e2.grid(row=1,column=1)
     button = tk.Button(root,text="confirm",command= write1(e1,e2))
     button.grid(row=2,column=1)
+    button = tk.Button(root,text="go back to menu",command=menu)
+    button.grid(row=3,column=1)
         
 
 def see_task():
@@ -29,10 +31,14 @@ def see_task():
         l.config(row)
         
     f.close()
-button = tk.Button(root,text="input",command=input_task)
-button.grid(column=0)
-button1 = tk.Button(root,text="show",command=see_task)
-button1.grid(column=1)
+
+def menu():
+    button = tk.Button(root,text="input",command=input_task)
+    button.grid(column=0)
+    button1 = tk.Button(root,text="show",command=see_task)
+    button1.grid(column=1)
+
+menu()
 
 root.mainloop()
 
