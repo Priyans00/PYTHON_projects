@@ -3,8 +3,11 @@ import csv
 
 
 root = tk.Tk()
-
-e
+def write1(k,n):
+    f=open("storage.csv","a")
+    c=csv.writer(f)
+    c.writerow([k,n])
+    f.close() 
 
 def input_task():
     tk.Label(root,text="input the task").grid(row=0)
@@ -12,10 +15,7 @@ def input_task():
     tk.Label(root,text="input  the deadline").grid(row=1)
     e2=tk.Entry(root).grid(row=1,column=1)
     button = tk.Button(root,text="confirm",command=)
-        f=open("storage.csv","a")
-        c=csv.writer(f)
-        c.writerow([k,n])
-        f.close()
+        
 
 def see_task():
     f=open('storage.csv','r')
