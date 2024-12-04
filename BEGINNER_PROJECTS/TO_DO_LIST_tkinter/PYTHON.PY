@@ -5,7 +5,7 @@ from replit import clear
 
 root = tk.Tk()
 def write1(k,n):
-    with open("BEGINNER_PROJECTS/TO_DO_LIST/storage.csv","a",newline='') as f:
+    with open("BEGINNER_PROJECTS/TO_DO_LIST_tkinter/storage.csv","a",newline='') as f:
         c = csv.writer(f)
         c.writerow([k,n])
     tk.Label(root,text=k ).grid(row=1,column=4)
@@ -25,7 +25,7 @@ def input_task():
         
 
 def see_task():
-    with open("BEGINNER_PROJECTS/TO_DO_LIST/storage.csv","r",newline='') as f:
+    with open("BEGINNER_PROJECTS/TO_DO_LIST_tkinter/storage.csv","r",newline='') as f:
         c=csv.reader(f)
         label = tk.Label(root,text='')
         label.grid(row=4,column=4)
@@ -33,6 +33,7 @@ def see_task():
         for row in c:
             for j in row:
                 label.config(text= j )
+
 
 def menu():
     clear()
