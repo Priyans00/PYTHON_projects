@@ -14,7 +14,8 @@ def write1(k,n):
 
 root.title('TO DO LIST')
 
-def input_task(): 
+def input_task():
+     
     tk.Label(frame1,text="input the task").grid(row=0)
     e1=tk.Entry(frame1)
     e1.grid(row=0,column=1)
@@ -23,13 +24,14 @@ def input_task():
     e2.grid(row=1,column=1)
     button = tk.Button(frame1,text="confirm",command= lambda: write1(e1.get(),e2.get()))
     button.grid(row=2,column=1)
-    button = tk.Button(frame1,text="go back to menu",command=menu)
+    button = tk.Button(frame1,text="go back to menu",command=clearall)
     button.grid(row=3,column=1)
     tk.Button(frame1,text="clear ",command=clearall).grid(row=4,column=1)
     
         
 
 def see_task():
+    
     for widget in root.grid_slaves():
         if isinstance(widget, tk.Label) and widget.grid_info()['row'] >= 4:
             widget.destroy()
@@ -46,7 +48,7 @@ def see_task():
                     tk.Label(frame1, text=row[1]).grid(row=row_num, column=1)  # Deadline
                     
         
-        tk.Button(frame1, text="Back to Menu", command=menu).grid(row=3, column=0)
+        tk.Button(frame1, text="Back to Menu", command=clearall).grid(row=3, column=0)
         tk.Button(frame1,text="clear ",command=clearall).grid(row=4,column=0)
                     
     except FileNotFoundError:
@@ -56,12 +58,14 @@ def see_task():
 def clearall():
     for widgets in frame1.winfo_children():
         widgets.destroy()
+    menu()
 
 
 def menu():
-    button = tk.Button(root,text="input",command=input_task)
+    
+    button = tk.Button(frame1,text="input",command=input_task)
     button.grid(row=0,column=0)
-    button1 = tk.Button(root,text="show",command=see_task)
+    button1 = tk.Button(frame1,text="show",command=see_task)
     button1.grid(column=0,row=1)
 
 menu()
