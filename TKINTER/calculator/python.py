@@ -2,12 +2,14 @@ from tkinter import *
 
 root=Tk()
 root.title('CALCULATOR')
+root.geometry("400x400")
 
 fr=Frame(root,width = 200, height = 200)
 fr.place(x=0,y=0)
 gr=Frame(root)
 gr.place(x=200,y=0)
-
+rr=Frame(root)
+rr.place(x=200,y=110)
 def get(n,l):
     l.append(n)
     
@@ -30,6 +32,16 @@ def buttons(l):
     Button(gr,text="=",command=lambda: calc(l)).grid(row=23,column=4)
     Button(gr,text="Ac",command = lambda : del1(l)).grid(row=23,column=1)
 
+    def on_enter(e):
+        e.widget['background'] = 'lightblue'
+
+    def on_leave(e):
+        e.widget['background'] = 'SystemButtonFace'
+
+    for button in gr.winfo_children():
+        button.bind("<Enter>",on_enter)
+        button.bind("<Leave>",on_leave)
+
 def del1(n):
    
     n.clear()
@@ -46,11 +58,20 @@ def calc(l):
     if a != '':
         try:
             b = eval(a)
-            show(b)
+            l.clear()
+            l.append(b)
+            show2(b)
         except Exception as e:
             print(f"Error evaluating expression: {e}")
     else:
         print("No expression to evaluate.")
+
+Label(rr,text="RESULT= ").pack(side=LEFT)
+l2=Label(rr,text="")
+l2.pack(side=LEFT)
+
+def show2(a):
+    l2.config(text=str(a))
 
     
 
@@ -100,6 +121,8 @@ l1.place(x=80,y=90)
 
 def show(a):
     l1.config(text=str(a))
+
+
 
 main()
 root.mainloop()
