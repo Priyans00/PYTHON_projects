@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Truth or Dare</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f8ff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        button {
+            margin: 10px;
+            padding: 15px 30px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .truth {
+            background-color: #ff9999;
+        }
+        .dare {
+            background-color: #99ccff;
+        }
+        .output {
+            margin-top: 30px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Truth or Dare</h1>
+        <p>Click a button to get a random Truth or Dare!</p>
+        <button class="truth" onclick="fetchResult('truth')">Truth</button>
+        <button class="dare" onclick="fetchResult('dare')">Dare</button>
+        <div class="output" id="output">Your result will appear here...</div>
+    </div>
+
+    <script>
+        function fetchResult(type) {
+            fetch(`/get_${type}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('output').textContent = data.message;
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+        }
+    </script>
+</body>
+</html>
