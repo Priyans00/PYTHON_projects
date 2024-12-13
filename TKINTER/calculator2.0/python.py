@@ -2,34 +2,35 @@ from tkinter import *
 
 root=Tk()
 root.title("CALCULATOR")
-root.geometry("20x130")
+root.geometry("20x150")
 
-gr=Frame(root)
-gr.place(x=0,y=30)
+gr=Frame(root,bg="green",height=120,width=20)
+gr.place(x=8,y=20)
 
 rr=Frame(root)
 rr.place(x=0,y=0)
 
 def get(n,l):
     l.append(n)
+    #on_click(str(n))
 
 def buttons(l):
-    Button(gr,text="1",command=lambda: get(1,l)).grid(row=0,column=1)
-    Button(gr,text="2",command=lambda: get(2,l)).grid(row=0,column=2)
-    Button(gr,text="3",command=lambda: get(3,l)).grid(row=0,column=3)
-    Button(gr,text="4",command=lambda: get(4,l)).grid(row=1,column=1)
-    Button(gr,text="5",command=lambda: get(5,l)).grid(row=1,column=2)
-    Button(gr,text="6",command=lambda: get(6,l)).grid(row=1,column=3)
-    Button(gr,text="7",command=lambda: get(7,l)).grid(row=2,column=1)
-    Button(gr,text="8",command=lambda: get(8,l)).grid(row=2,column=2)
-    Button(gr,text="9",command=lambda: get(9,l)).grid(row=2,column=3)
-    Button(gr,text="0",command=lambda: get(0,l)).grid(row=3,column=2)
-    Button(gr,text="X",command=lambda: get("*",l)).grid(row=0,column=4)
-    Button(gr,text="/",command=lambda: get("/",l)).grid(row=1,column=4)
-    Button(gr,text="+",command=lambda: get("+",l)).grid(row=2,column=4)
-    Button(gr,text="-",command=lambda: get("-",l)).grid(row=3,column=3)
-    Button(gr,text="=",command=lambda: calc(l)).grid(row=3,column=4)
-    Button(gr,text="Ac",command = lambda : del1(l)).grid(row=3,column=1)
+    Button(gr,text="1",command=lambda: get(1,l)).grid(row=0,column=1,padx=2,pady=0.5)
+    Button(gr,text="2",command=lambda: get(2,l)).grid(row=0,column=2,padx=2,pady=0.5)
+    Button(gr,text="3",command=lambda: get(3,l)).grid(row=0,column=3,padx=2,pady=0.5)
+    Button(gr,text="4",command=lambda: get(4,l)).grid(row=1,column=1,padx=2,pady=0.5)
+    Button(gr,text="5",command=lambda: get(5,l)).grid(row=1,column=2,padx=2,pady=0.5)
+    Button(gr,text="6",command=lambda: get(6,l)).grid(row=1,column=3,padx=2,pady=0.5)
+    Button(gr,text="7",command=lambda: get(7,l)).grid(row=2,column=1,padx=2,pady=0.5)
+    Button(gr,text="8",command=lambda: get(8,l)).grid(row=2,column=2,padx=2,pady=0.5)
+    Button(gr,text="9",command=lambda: get(9,l)).grid(row=2,column=3,padx=2,pady=0.5)
+    Button(gr,text="0",command=lambda: get(0,l)).grid(row=3,column=2,padx=2,pady=0.5)
+    Button(gr,text="X",command=lambda: get("*",l)).grid(row=0,column=4,padx=2,pady=0.5)
+    Button(gr,text="/",command=lambda: get("/",l)).grid(row=1,column=4,padx=2,pady=0.5)
+    Button(gr,text="+",command=lambda: get("+",l)).grid(row=2,column=4,padx=2,pady=0.5)
+    Button(gr,text="-",command=lambda: get("-",l)).grid(row=3,column=3,padx=2,pady=0.5)
+    Button(gr,text="=",command=lambda: calc(l)).grid(row=3,column=4,padx=2,pady=0.5)
+    Button(gr,text="Ac",command = lambda : del1(l)).grid(row=3,column=1,padx=2,pady=0.5)
 
     def on_enter(e):
         e.widget['background'] = 'lightblue'
@@ -74,6 +75,14 @@ def show2(a):
 def main():
     l=[]
     buttons(l)
+
+#def on_click(value):
+   # current = e.get()
+    #e.delete(0,END)
+    #e.insert(0, current+value)
+#e = Entry(rr, width=10, font=('Arial',10), bd=10, insertwidth=2, justify="right")
+#e.place(x=0,y=200)
+
 
 main()
 root.mainloop()

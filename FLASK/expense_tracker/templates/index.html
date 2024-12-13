@@ -12,13 +12,51 @@
     </div>
 
     <div>
-        <p>ADD EXPENSE</p>
-        <P>SHOW TOTAL</P>
+        <button class = 'submit_button-1' onclick = "show_expenses()">SHOW</button>
+        <div class="output" id="output" > your result will appear here ... </div>
+        
+        
     </div>
     <DIV>
-        <P>NAME THE EXPENSE</P>
-        <P>COST OF THE EXPENSE</P>
-        <P>ADD THE EXPENSE</P>
+        <input placeholder="name the expense" id ="add_exp" type="text" >
+        <input placeholder = "enter the amt of expense" id = "add_amt" type="number">
+        <button class="submit_button" onclick="add_exp()">ADD</button>
+        <br>
     </DIV>
+    <script>
+        function add_exp(){
+            inputvalue = [document.getElementById('add_exp').value,document.getElementById('add_amt').value];
+            fetch(`/add`,{
+                method: 'POST',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify({
+                    name:inputvalue[0],
+                    amount:parseFloat(inputvalue[1]),
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message || data.error);
+                document.getElementById('add_exp').value = '';
+                document.getElementById('add_amt').value = '';
+            })
+            .catch(error => {
+                console.error('Error adding data:', error);
+            });
+        }
+        function show_expenses(){
+            fetch(`/show`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('output').textContent = data.message;
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+
+        }
+    </script>
 </body>
 </html>
