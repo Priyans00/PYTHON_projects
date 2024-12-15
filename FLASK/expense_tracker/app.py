@@ -27,6 +27,5 @@ def show():
         return jsonify({'message':f" expense = {i} , amount = {expense[i]}"})
     
 
-if __name__=="__main__":
-    app.run()
+
 
