@@ -94,7 +94,41 @@ def show():
     b1 = Button(fs1, text="return to main menu", command=dest)
     b1.grid(row=5, column=10)
     show.mainloop()
+
+def delit():
+    delit = Toplevel(root)
+    delit.title("Delete Task")
+    delit.geometry("400x400")
     
+    fd = Frame(delit)
+    fd.pack(pady=20)
+    
+    cursor.execute('select * from data')
+    result = cursor.fetchall()
+    
+    Label(fd, text="Current Tasks:", font=('Arial', 10, 'bold')).pack(pady=5)
+    for row in result:
+        Label(fd, text=f"S.No {row[0]}: {row[1]} (Deadline: {row[2]})").pack()
+    
+    Label(fd, text="\nEnter the S.No of the task to delete:", font=('Arial', 10)).pack(pady=5)
+    ed1 = Entry(fd)
+    ed1.pack(pady=5)
+
+    def dell():
+        sno = ed1.get()
+        if sno:
+            try:
+                cursor.execute("delete from data where id = ?", (sno,))
+                conn.commit()
+                messagebox.showinfo("Success", "Removed successfully")
+                delit.destroy()
+            except Exception as e:
+                messagebox.showerror("Error", f"An error occurred: {str(e)}")
+        else:
+            messagebox.showerror("Error", "Please enter a valid S.No")
+
+    bd1 = Button(fd, text="Delete", command=dell)
+    bd1.pack(pady=10)
 
 b1 = Button(f1,text = "enter a task",height=2,width=15,bg="blue",fg="yellow",padx=5,borderwidth=0.5,command=insert1)
 b1.place(anchor='w',relx=0,rely=0.25)
@@ -102,6 +136,8 @@ b1.place(anchor='w',relx=0,rely=0.25)
 b2 = Button(f1,text="see the tasks",height=2,width=15,bg="blue",fg="yellow",padx=5,borderwidth=5,command=show)
 b2.place(anchor='w',relx=0,rely=0.5)    
 
+b3 = Button(f1,text="delete task",height=2,width=15,bg="blue",fg="yellow",padx=5,borderwidth=5,command=delit)
+b3.place(anchor='center',relx=0.5,rely=0.5)   
 
 
 root.mainloop()
