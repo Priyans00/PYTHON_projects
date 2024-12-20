@@ -4,7 +4,7 @@ import random
 from sqlalchemy.sql.expression import func
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////truth_dare.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://///truth_dare.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize the database
